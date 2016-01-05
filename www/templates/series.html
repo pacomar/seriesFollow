@@ -1,0 +1,22 @@
+<ion-view view-title="Series">
+	<ion-content>
+		<ion-list>
+			<a ng-repeat="serie in series" class="item item-thumbnail-left" href="#/app/series/{{serie.id}}">
+				<img ng-src="{{serie.portada}}" class="heightAuto">
+				<div class="row">
+					<div class="col">
+						<h2>{{serie.name}}</h2>		
+					</div>
+				</div>
+				<div class="row">
+					<div class="col col-75">
+						<rating ng-model="serie.rate" max="serie.max" readonly="true"></rating>				
+					</div>
+					<div class="col text-center">
+						{{serie.rate}}
+					</div>
+				</div>
+			</a>
+		</ion-list>
+	</ion-content>
+</ion-view>

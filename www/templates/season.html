@@ -1,0 +1,32 @@
+<ion-view view-title="Info Season">
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <h1>{{season.name}}</h1>
+      </div>
+    </div>
+    <div class="item item-image">
+      <img ng-src="{{season.portada}}" alt="">
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>{{season.overview}}</p>
+      </div>
+    </div>
+    <ion-list class="imgGRande">
+      <a ng-repeat="episode in season.episodes" class="item item-thumbnail-left" href="#/app/series/{{serie.id}}/{{season.season_number}}/{{episode.episode_number}}">
+        <img ng-src="http://image.tmdb.org/t/p/w185/{{episode.still_path}}" class="widthAuto">
+        <div class="row">
+          <div class="col">
+            <h2>{{episode.name}}</h2>   
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h2>{{episode.air_date || 'Sin fecha'}}</h2>   
+          </div>
+        </div>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

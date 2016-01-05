@@ -1,0 +1,27 @@
+<ion-view view-title="Info Episode">
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <h1>{{episode.name}}</h1>
+      </div>
+    </div>
+    <div class="item item-image">
+      <img ng-src="{{episode.portada}}" alt="">
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>{{episode.overview}}</p>
+      </div>
+    </div>
+    <ion-list>
+      <a ng-repeat="link in episode.links" class="item item-thumbnail-left" href="#">
+        <img ng-src="http://image.tmdb.org/t/p/w185/{{episode.still_path}}" class="widthAuto">
+        <div class="row">
+          <div class="col">
+            enlace 
+          </div>
+        </div>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

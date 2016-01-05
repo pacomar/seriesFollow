@@ -1,0 +1,65 @@
+<ion-view view-title="Info">
+  <ion-content>
+  	<div class="row">
+  		<div class="col">
+		    <h1>{{serie.name}}</h1>
+  		</div>
+  	</div>
+    <div class="item item-image">
+	  	<img ng-src="{{serie.portada}}" class=""/>
+    </div>
+    <div class="row">
+    	<div class="col">
+		    <p>{{serie.overview}}</p>
+    	</div>
+    </div>
+    <a class="item item-list-detail">
+	    <ion-scroll direction="x">
+			<img ng-repeat="image in serie.images" ng-src="{{image.file_path}}" ng-click="showImages($index)" class="image-list-thumb"/>
+		</ion-scroll>
+  	</a>
+  	<div class="row">
+  		<div class="col">
+		  	<h2>Temporadas</h2>
+  		</div>
+  	</div>
+  	<ion-list>
+		<a ng-repeat="season in serie.seasons" class="item item-thumbnail-left" href="#/app/series/{{serie.id}}/{{season.season_number}}">
+			<img ng-src="http://image.tmdb.org/t/p/w300/{{season.poster_path}}" class="heightAuto">
+			<div class="row">
+				<div class="col">
+					<h2>Temporada {{season.season_number}}</h2>		
+				</div>
+			</div>
+		</a>
+	</ion-list>
+	<div class="row">
+  		<div class="col">
+		  	<h2>Comments</h2>
+  		</div>
+  	</div>
+	<ion-list>
+		<ion-item ng-hide="serie.comments" class="textCenter">
+            <i class="icon ion-loading-c"></i> Loading Chats
+        </ion-item>
+        <ion-item ng-if="serie.comments.length == 0" class="textCenter">
+            <h4>No comments in this tv show.</h4>
+        </ion-item>
+        <ion-item class="" ng-repeat="comment in serie.comments | orderBy:'-createdAt':true" type="item-text-wrap">
+            <h4>{{comment.userName}} :</h4>
+            <span class="item-note">
+            	{{ timeToDate(comment.createdAt) }}
+            </span>
+            <p>{{comment.message}}</p>
+        </ion-item>
+		<ion-item class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" ng-model="comment.text" placeholder="Type in your comment..." ng-keyup="$event.keyCode == 13 && sendMessage(comment.text)">
+            </label>
+            <button ng-click="sendMessage(comment.text)" class="button button-small button-balanced">
+                Send
+            </button>
+        </ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>
